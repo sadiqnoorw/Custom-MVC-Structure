@@ -1,0 +1,15 @@
+{
+    "name": "mvc/structure",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sadiq Noor",
+            "email": "sadiq.pk33@gmail.com"
+        }
+    ],
+    "require": {}
+}
