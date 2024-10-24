@@ -5,17 +5,21 @@ require_once(dirname(__FILE__) ."/../vendor/autoload.php");
 define("STORAGE_PATH", __DIR__ ."/../storage");
 define("VIEW_PATH", __DIR__ ."/../views");
 
-use App\Router;
+//echo phpinfo();
+// use App\Users;
 
+use App\Router;
+// echo '<pre>';
+// var_dump($_REQUEST);
 $uri = $_REQUEST['url'] ?? '/';
+
 
 $router = new Router;
 $router
-    ->get("/", function(){
-        echo '<form action="store" method="post"><input type="input" name="amount"></form>';
-    })->post("store",  function(){
-        var_dump($_POST);
-    });
+    ->get("/", [App\Classes\HomeController::class, "index"])
+    ->get("invoice", [App\Classes\InvoicesController::class, 'index'])
+    ->get("invoice/create", [App\Classes\InvoicesController::class, 'create'])
+    ->post("invoice/store", [App\Classes\InvoicesController::class, 'store']);
 
 
 echo $action = $router->resolve($uri, strtolower($_SERVER["REQUEST_METHOD"]));
