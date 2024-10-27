@@ -3,10 +3,23 @@
 namespace App\Classes;
 
 use App\View;
-
+use App\Model\User;
+use App\DB;
 class HomeController {
     public function index(): View
     {
-       return View::make('index', ['title' => 'Home page']);
+        $user = new User();
+
+        try {
+            $users = $user->getUsers();
+            
+            
+         
+            
+        } catch(Exception $e) {
+            echo "Connection failed: " . $e->getMessage();
+        }
+
+       return View::make('index', ['users' => $users]);
     }
 }

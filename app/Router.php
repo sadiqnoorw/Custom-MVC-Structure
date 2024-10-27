@@ -45,7 +45,11 @@ class Router
                 if(method_exists($class, $method)) {
                    
                     return call_user_func_array([$class, $method], []);
+                } else {
+                    throw new \App\Exception\MethodNotFoundException();
                 }
+            }else {
+                throw new \App\Exception\ClassNotFoundException();
             }
         }
 
