@@ -1,11 +1,12 @@
 <?php
 
 namespace App;
+use App\Exception\RouteNotFoundException;
 
 class Router
 {
    
-    private array $routes;
+    private array $routes = [];
     public function register(string $route, callable|array $action, string $postType)
     {
         $this->routes[$postType][$route] = $action;
@@ -23,12 +24,16 @@ class Router
         return $this->register($route, $action, 'post');
 
     }
+    public function routes(): array
+    {
+        return $this->routes;
+    }
 
     public function resolve($requestUri, string $postType)
     {
         $action = $this->routes[$postType][$requestUri] ?? null;
         if (!$action) {
-            throw new \RouteNotFoundException();
+            throw new RouteNotFoundException();
         }
 
         if(is_callable($action)) {
@@ -52,6 +57,7 @@ class Router
                 throw new \App\Exception\ClassNotFoundException();
             }
         }
+        throw new \App\Exception\RouteNotFoundException();
 
     }
 }
