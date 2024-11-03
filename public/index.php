@@ -20,10 +20,10 @@ $uri = $_REQUEST['url'] ?? '/';
 
 $router = new Router;
 $router
-    ->get("/", [\App\Classes\HomeController::class, "index"])
-    ->get("invoice", [\App\Classes\InvoicesController::class, 'index'])
-    ->get("invoice/create", [\App\Classes\InvoicesController::class, 'create'])
-    ->post("invoice/store", [\App\Classes\InvoicesController::class, 'store']);
+    ->get("/", [\App\Controller\HomeController::class, "index"])
+    ->get("invoice", [\App\Controller\InvoicesController::class, 'index'])
+    ->get("invoice/create", [\App\Controller\InvoicesController::class, 'create'])
+    ->post("invoice/store", [\App\Controller\InvoicesController::class, 'store']);
 
 
 
