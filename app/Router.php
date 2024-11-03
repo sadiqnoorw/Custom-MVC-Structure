@@ -16,13 +16,11 @@ class Router
     public function get(string $route, callable|array $action)
     {
         return $this->register($route, $action, 'get');
-
     }
 
     public function post(string $route, callable|array $action)
     {
         return $this->register($route, $action, 'post');
-
     }
     public function routes(): array
     {
@@ -58,6 +56,5 @@ class Router
             }
         }
         throw new \App\Exception\RouteNotFoundException();
-
     }
 }

@@ -34,6 +34,7 @@ class RouterTest extends TestCase
                         '/users' => ['Users', 'index']
                     ]
             ];
+
         $this->AssertEquals($expected, $this->router->routes());
     }
 
@@ -74,7 +75,6 @@ class RouterTest extends TestCase
         $this->assertEmpty($this->router->routes());
     }
 
-    
     #[DataProvider('routeNotFoundCases')]
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_throws_route_not_found_exception(
@@ -89,6 +89,7 @@ class RouterTest extends TestCase
                 return true;
             }
         };
+
         $this->router->post('/users', [$users::class, 'store']);
         $this->router->get('/users', [$users::class, 'index']);
 
@@ -109,15 +110,12 @@ class RouterTest extends TestCase
     #[\PHPUnit\Framework\Attributes\Test]
     public function it_resolves_route_from_a_closure(): void
     {
-        
         $this->router->get('/Users', fn() =>[1, 2, 3]);
 
         $this->assertEquals(
             [1, 2, 3],
             $this->router->resolve('/Users', 'get')
         );
-
-
     }
 
     #[\PHPUnit\Framework\Attributes\Test]
@@ -136,8 +134,6 @@ class RouterTest extends TestCase
             [1, 2, 3],
             $this->router->resolve('/Users', 'get')
         );
-
-
     }
 
 }
